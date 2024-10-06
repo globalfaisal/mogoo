@@ -1,0 +1,11 @@
+# This is a comment
+# Specify the owners for specific files or directories
+
+# Example: All files in the repository
+*       @globalfaisal
+
+# Example: Specific directory
+# /path/to/directory/ @username1
+
+# Example: Specific file type
+# *.js    @username2

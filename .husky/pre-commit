@@ -1,0 +1,4 @@
+npx lint-staged --concurrent false || {
+    echo "Lint-staged failed. Please fix the errors before committing."
+    exit 1
+}

@@ -1,0 +1,26 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js 20
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - run: npm ci --legacy-peer-deps --prefer-offline # --prefer-offline for faster installs
+      - run: |
+          npm run lint &  # Run linting in parallel
+          npm run check-types  # Run type checking
+      # Optional: Set environment variable to force Node.js 20
+      - name: Force Node.js 20
+        run: echo "FORCE_JAVASCRIPT_ACTIONS_TO_NODE20=true" >> $GITHUB_ENV
