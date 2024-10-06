@@ -58,7 +58,7 @@ module.exports = {
           'error',
           { multiline: true, consistent: true },
         ],
-        'array-bracket-newline': ['error', { multiline: true, minItems: 2 }],
+        'array-bracket-newline': ['error', { multiline: true, minItems: 3 }],
       },
     },
   ],
