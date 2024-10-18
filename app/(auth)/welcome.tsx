@@ -4,23 +4,25 @@ import { Image, Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Swiper from 'react-native-swiper';
 
-import Button from '@/components/button';
-import { onboarding } from '@/constants/onboarding';
+import Button from '@/components/Button';
+import { onboarding } from '@/constants';
 
-const Onboarding = () => {
+const Welcome = () => {
   const swiperRef = useRef<Swiper>(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const isLastSlide = activeIndex === onboarding.length - 1;
 
   return (
-    <SafeAreaView className="flex h-full items-center justify-between bg-white">
+    <SafeAreaView className="flex h-full w-full items-center justify-between bg-white">
       <TouchableOpacity
         onPress={() => {
           router.replace('/(auth)/sign-up');
         }}
-        className="flex w-full items-end justify-end p-4"
+        className="ml-auto mr-5 mt-4"
       >
-        <Text className="font-JakartaMedium text-sm text-slate-900">Skip</Text>
+        <Text className="font-JakartaSemiBold text-base text-slate-500">
+          Skip
+        </Text>
       </TouchableOpacity>
       <Swiper
         onIndexChanged={(index) => {
@@ -28,30 +30,31 @@ const Onboarding = () => {
         }}
         ref={swiperRef}
         loop={false}
-        dot={
-          <View className="mx-1 h-[16px] w-[16px] rounded-full border border-primary-200 bg-primary-100" />
-        }
+        dot={<View className="mx-1 h-1.5 w-6 rounded-full bg-primary-50" />}
         activeDot={
-          <View className="mx-1 h-[18px] w-[18px] rounded-full border-2 border-primary-200 bg-primary-400" />
+          <View className="mx-1 h-1.5 w-6 rounded-full bg-primary-500" />
         }
       >
         {onboarding.map((item) => (
-          <View key={item.id} className="flex items-center justify-center p-4">
+          <View
+            key={item.id}
+            className="mt-4 flex w-full items-center justify-center self-center px-4"
+          >
             <Image
               source={item.image}
               resizeMode="contain"
-              className="h-[280px] w-full"
+              className="h-80 w-full"
             />
 
-            <View className="mt-12 flex w-full flex-row items-center justify-center">
-              <Text className="mx-8 text-center text-3xl font-bold text-slate-900">
+            <View className="mt-16 flex w-full items-center justify-center">
+              <Text className="text-center font-JakartaBold text-3xl text-slate-900">
                 {item.title}
               </Text>
-            </View>
 
-            <Text className="mx-8 mt-2 text-center font-JakartaMedium text-base text-slate-500">
-              {item.description}
-            </Text>
+              <Text className="mx-8 mt-2 text-center font-JakartaMedium text-base text-slate-500">
+                {item.description}
+              </Text>
+            </View>
           </View>
         ))}
       </Swiper>
@@ -61,12 +64,12 @@ const Onboarding = () => {
             ? router.replace('/(auth)/sign-up')
             : swiperRef.current?.scrollBy(1)
         }
-        text={isLastSlide ? "Let's Go Places!" : 'Next'}
+        title={isLastSlide ? "Let's Go Places!" : 'Next'}
         variant="primary"
-        className="mt-10 w-8/12"
+        className="mt-2 max-w-xs"
       />
     </SafeAreaView>
   );
 };
 
-export default Onboarding;
+export default Welcome;
