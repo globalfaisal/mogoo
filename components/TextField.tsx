@@ -1,7 +1,6 @@
 import { clsx } from 'clsx';
 import type { TextInputProps } from 'react-native';
 import {
-  Image,
   Keyboard,
   KeyboardAvoidingView,
   Platform,
@@ -11,9 +10,12 @@ import {
   View,
 } from 'react-native';
 
+import type { IconName } from './Icon';
+import Icon from './Icon';
+
 interface TextFieldProps extends TextInputProps {
   label?: string;
-  icon?: any;
+  icon?: IconName;
   secureTextEntry?: boolean;
   labelClassName?: string;
   containerClassName?: string;
@@ -57,9 +59,11 @@ const TextField = ({
             )}
           >
             {icon && (
-              <Image
-                source={icon}
-                className={clsx('ml-4 h-5 w-5', iconClassName)}
+              <Icon
+                name={icon}
+                resizeMode="contain"
+                size="md"
+                className={clsx('ml-4', iconClassName)}
               />
             )}
             <TextInput

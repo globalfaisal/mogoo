@@ -5,7 +5,6 @@ import { ScrollView, Text, View } from 'react-native';
 
 import Button from '@/components/Button';
 import TextField from '@/components/TextField';
-import { icons } from '@/constants';
 
 type Form = {
   name: string;
@@ -36,15 +35,14 @@ const SignUp = () => {
         <View className="mt-12">
           <TextField
             placeholder="Full name"
-            icon={icons.email}
-            autoCapitalize="none"
-            textContentType="emailAddress"
-            value={form.email}
-            onChangeText={(email) => setForm({ ...form, email })}
+            icon="person"
+            autoCapitalize="words"
+            value={form.name}
+            onChangeText={(name) => setForm({ ...form, name })}
           />
           <TextField
             placeholder="Email: name@email.com"
-            icon={icons.email}
+            icon="email"
             autoCapitalize="none"
             textContentType="emailAddress"
             value={form.email}
@@ -53,7 +51,7 @@ const SignUp = () => {
           />
           <TextField
             placeholder="Password"
-            icon={icons.lock}
+            icon="lock"
             autoCapitalize="none"
             secureTextEntry
             textContentType="password"
@@ -68,6 +66,7 @@ const SignUp = () => {
           variant="primary"
           className="mt-8"
         />
+
         <Link
           href="/(auth)/sign-in"
           className="mt-4 text-center font-JakartaMedium text-base text-slate-500"

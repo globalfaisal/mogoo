@@ -59,6 +59,13 @@ module.exports = {
           { multiline: true, consistent: true },
         ],
         'array-bracket-newline': ['error', { multiline: true, minItems: 3 }],
+        'react/prop-types': 'off',
+        'react/no-unused-prop-types': [
+          'error',
+          {
+            ignore: ['className', 'style'],
+          },
+        ],
       },
     },
   ],
